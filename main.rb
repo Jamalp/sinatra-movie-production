@@ -25,7 +25,7 @@ end
 
 get '/movie/:id' do
   id = params[:id]
-  sql = "SELECT * FROM movie WHERE id = #{id}"
+  sql = "SELECT * FROM movies WHERE id = #{id}"
   @movie = run_sql(sql).first
   erb :movie
 
