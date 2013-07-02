@@ -1,2 +1,11 @@
 <h1>Employees</h1>
-<h3><%= @person['name'] %></h3>
+
+<h2><%= @person['name'] %></h2>
+
+<ul>
+  <li><%= @person['title'] %></li>
+</ul>
+
+<p>
+  <a href="/people/<%= @person['id'] %>/edit">Edit This Person</a>
+</p>

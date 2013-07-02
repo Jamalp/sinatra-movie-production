@@ -1,5 +1,8 @@
 <h1>Employees</h1>
-<% @people.each do |people| %>
-<%= people %>
+<% @people.each do |person| %>
+  <ul>
+  <li><%= person['name'] %></li>
+</ul>
+
 <% end %>
 

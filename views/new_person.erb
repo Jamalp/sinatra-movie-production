@@ -3,13 +3,4 @@
   <input type="text" name="name" placeholder="Full Name">
   <label>Title</label>
   <input type="text" name="title" placeholder="Title">
-
- <select name="movie_id">
-    <% @movies.each do |movie| %>
-      <option value="<%= movie["id"] %>">
-        <%= movie["name"] %>
-      </option>
-    <% end %>
-  </select><br>
-  <button>Add New Employee</button>
-</form>
+<button>Add New Employee</button>

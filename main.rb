@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'pg'
+require 'pry' if development?
 
 helpers do
   # This helps us run SQL commands
@@ -13,6 +14,14 @@ helpers do
 end
 
 get '/' do
+   sql = "select * from tasks"
+  @tasks = run_sql(sql)
+
+  sql = "select * from movies"
+  @movies = run_sql(sql)
+
+  sql = "select * from people"
+  @people = run_sql(sql)
 
 erb :index
 end
@@ -25,7 +34,7 @@ end
 
 get '/movie/:id' do
   id = params[:id]
-  sql = "SELECT * FROM movies WHERE id = #{'id'}"
+  sql = "SELECT * FROM movies WHERE id = #{id}"
   @movie = run_sql(sql).first
   erb :movie
 
@@ -76,9 +85,24 @@ post '/tasks/new' do
 
 end
 
+get '/people/new' do
+  erb :new_person
+end
+
+post '/people/new' do
+  name = params[:name]
+  title = params[:title]
+  sql = "INSERT INTO people (name, title) VALUES ('#{name}','#{title}');"
+  run_sql(sql)
+  redirect to '/people'
+  erb :new_person
+end
+
 get '/people' do
 sql = "SELECT * FROM people"
-  @people = run_sql(sql).first
+  @people = run_sql(sql) # @people is an array
+  # @people = run_sql(sql).first # gives you a hash
+  binding.pry
   erb :people
 end
 
@@ -89,16 +113,4 @@ get '/people/:id' do
   erb :person
 end
 
-get '/people/new' do
-  erb :new_person
-end
-
-post '/people/new' do
-  name = params[:name]
-  title = params[:title]
-  sql = "INSERT INTO movies (name, title) VALUES ('#{name}','#{title}');"
-  run_sql(sql)
-  redirect to '/people'
-  erb :new_person
-end
 
