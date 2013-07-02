@@ -25,7 +25,7 @@ end
 
 get '/movie/:id' do
   id = params[:id]
-  sql = "SELECT * FROM movies WHERE id = #{id}"
+  sql = "SELECT * FROM movies WHERE id = #{'id'}"
   @movie = run_sql(sql).first
   erb :movie
 
@@ -42,9 +42,9 @@ post '/movies/new' do
   sql = "INSERT INTO movies (name, description, people_id) VALUES ('#{name}','#{description}',#{people_id});"
   run_sql(sql)
   redirect to '/movies'
-
   erb :new_movie
 end
+
 get '/tasks' do
   sql = "SELECT * FROM tasks"
   @tasks = run_sql(sql).first
@@ -53,7 +53,7 @@ end
 
 get '/tasks/:id' do
   id = params[:id]
-  sql = "SELECT * FROM tasks WHERE id = #{id}"
+  sql = "SELECT * FROM tasks WHERE id = #{'id'}"
   @tasks = run_sql(sql).first
   erb :task
 end
@@ -84,7 +84,7 @@ end
 
 get '/people/:id' do
   id = params[:id]
-  sql = "SELECT * FROM people WHERE id = #{id}"
+  sql = "SELECT * FROM people WHERE id = #{'id'}"
   @person = run_sql(sql).first
   erb :person
 end
