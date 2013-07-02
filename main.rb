@@ -82,7 +82,6 @@ post '/tasks/new' do
   redirect to '/tasks'
 
   erb :new_task
-
 end
 
 get '/people/new' do
@@ -102,7 +101,7 @@ get '/people' do
 sql = "SELECT * FROM people"
   @people = run_sql(sql) # @people is an array
   # @people = run_sql(sql).first # gives you a hash
-  binding.pry
+
   erb :people
 end
 
