@@ -32,6 +32,7 @@ get '/' do
 erb :index
 end
 
+#### TASKS #####
 get '/tasks' do
   @tasks = Task.all
   erb :tasks
@@ -50,12 +51,11 @@ end
 
 
 get '/tasks/:id' do
-  @tasks = Task.find(params[:id])
+  Task.find(params[:id])
   # @person = task.person
   # @movie = movie.person
   erb :task
 end
-binding.pry
 post 'tasks/:id' do
   task = Task.find(params[:id])
   task.description = params[:description]
@@ -66,14 +66,47 @@ post 'tasks/:id' do
 end
 
 get '/tasks/:id/edit' do
+  task = Task.find(params[:id])
+  task.description = params[:description]
+  task.complete = params[:complete]
+  redirect to('/tasks')
+end
+
+get 'tasks/delete' do
 
 end
 
 
-# get '/movies' do
 
-#   erb :movies
-# end
+###### MOVIES ########
+
+
+get '/movies' do
+  @movies = Movie.all
+  erb :movies
+end
+
+post '/movies/new' do
+  Movie.create(params)
+  redirect to('/movies')
+end
+
+get '/movies/new' do
+  @movies = Movie.all
+  erb :new_movie
+end
+
+get '/movies/:id' do
+  Movie.find(params[:id])
+  redirect to('/movies')
+end
+
+post '/movies/:id' do
+  movie = Movie.find(params[:id])
+  movie.description = params[:description]
+  movie.person_id = params[:person_id]
+  redirect to('/movies')
+end
 
 # get '/movie/:id' do
 #   id = params[:id]
@@ -106,12 +139,10 @@ end
 
 # end
 
-# get '/people' do
-# sql = "SELECT * FROM people"
-
-
-#   erb :people
-# end
+get '/people' do
+  @people = Person.all
+  erb :people
+end
 
 # get '/people/:id' do
 

@@ -1,8 +1,6 @@
-<h1>Employees</h1>
-<% @people.each do |person| %>
-  <ul>
-  <li><%= person['name'] %></li>
-</ul>
+<h1>Staff</h1>
 
+<h1> <% @people.each do |person| %></h1>
+<a href="/people/<%=person['id']%>"><%= person['person']%> </a>
 <% end %>
 

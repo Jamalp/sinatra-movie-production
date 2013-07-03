@@ -1,6 +1,8 @@
 <h1>Movies, Movies, Movies!</h1>
 
-<h1 class="name"> <% @movies.each do |movie| %></h1>
-<%= movies[:name] %>
-<% end
+<h1> <% @movies.each do |movie| %></h1>
+<ul>
+  <li><a href="/movies/<%=movie['id']%>"><%= movie['movie'] %> </a></li>
+</ul>
 
+<% end %>
