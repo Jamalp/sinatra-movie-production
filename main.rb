@@ -108,45 +108,52 @@ post '/movies/:id' do
   redirect to('/movies')
 end
 
-# get '/movie/:id' do
-#   id = params[:id]
+get '/movies/:id/edit' do
+  movie = Movie.find(params[:id])
+  movie.description = params[:description]
+  redirect to('/movies')
+end
 
-#   erb :movie
+get '/movies/:id/delete' do
 
-# end
+end
 
-# get '/movies/new' do
-#   erb :new_movie
-# end
-
-# post '/movies/new' do
-
-#   redirect to '/movies'
-#   erb :new_movie
-# end
-
-
-
-
-# get '/people/new' do
-#   @movies = Movie.all
-#   erb :new_person
-# end
-
-# post '/people' do
-#   Person.create(params)
-#   redirect to '/people'
-
-# end
+######### PEOPLE #########
 
 get '/people' do
   @people = Person.all
   erb :people
 end
 
-# get '/people/:id' do
+post '/people/new' do
+  People.create(params)
+  redirect to('/people')
+end
 
-#   erb :person
-# end
+get '/people/new' do
+  @people = Person.all
+  erb :new_person
+end
+
+get '/people/:id' do
+  Person.find(params[:id])
+  redirect to('/people')
+end
+
+post '/people/:id' do
+  person = Person.find(params[:id])
+  person.title = params[:title]
+  redirect to('/people')
+end
+
+get '/people/:id/edit' do
+  person = Person.find(params[:id])
+  person.title = params[:title]
+  redirect to('/people')
+end
+
+get '/people/:id/delete' do
+
+end
 
 
