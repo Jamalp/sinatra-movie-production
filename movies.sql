@@ -16,6 +16,7 @@ CREATE TABLE tasks (
   name VARCHAR(255),
   description VARCHAR(255),
   complete BOOLEAN,
+  release
   movie_id INT references movies(id),
   people_id INT references people(id)
 );

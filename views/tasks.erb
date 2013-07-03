@@ -1,3 +1,4 @@
-<% @tasks.each do |tasks| %>
-<%= tasks %>
+<h1> Tasks </h1>
+  <% @tasks.each do |task| %>
+<a href="/tasks/<%=task["id"]%>"><%= task["task"] %></a>
 <% end %>

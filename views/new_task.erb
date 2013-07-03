@@ -1,6 +1,36 @@
 <form action="/tasks/new" method="POST">
-  <input type="text" name="name">
-  <input type="text" name="description">
+  <label> Task </label><br>
+  <input type = "text" name = "task" placeholder = "task"><br>
+  <label> Description </label><br>
+  <input type = "text" name = "description" placeholder = "description"><br>
+
   <input type="text" name="complete">
   <button>Create New Task</button>
 </form>
+
+<form action = "/todos" method = "post">
+  <label> Task </label><br>
+  <input type = "text" name = "task" placeholder = "task"><br>
+  <label> Details </label><br>
+  <input type = "text" name = "details" placeholder = "details"><br>
+  <label> Due </label><br>
+  <input type = "date" name = "due" placeholder = "duedate"><br>
+  <label for="urgent">
+    Urgent: <input type = "radio" name = "urgent" value = "true" >
+    Not Urgent: <input type = "radio" name = "urgent" value = "false" >
+  </label><br>
+  <select name = "person_id">
+    <%@people.each do |person|%>
+      <option value = "<%=person["id"]%>">
+        <%=person["name"] %>
+      </option>
+    <%end%>
+  </select><br>
+  <select name = "movie_id">
+    <%@movies.each do |movie|%>
+      <option value = "<%=movie["id"]%>">
+        <%=movie["title"] %>
+      </option>
+    <%end%>
+  </select><br>
+  <button> Add Task <
